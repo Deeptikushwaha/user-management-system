@@ -80,6 +80,78 @@ $ npm start
 ### Admin Routes
 - `POST /api/admin/notify` – Send critical/non-critical notifications to users (admin only)
 
+## API Reference
+
+**Register user/admin**
+
+POST ```http
+   /api/users/register ```
+
+Body: 
+```bash
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+```
+**Login** 
+
+POST ```http
+  /api/users/login  ```
+
+Body: 
+```bash
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+```
+**Update profile (requires bearer token)** 
+
+POST ```http /api/users/profile```
+
+Body: 
+```bash  
+{
+  "name": "John D.",
+  "mobile": "9876543210",
+  "bio": "React Developer",
+  "availability": [
+    { "start": "09:00:00", "end": "13:00:00" },
+    { "start": "15:00:00", "end": "18:00:00" }
+  ]
+}
+
+```
+
+**User Notification (Requires Bearer Token)** 
+
+POST ```http /api/users/notify ```
+Body:
+```bash  
+{
+  "recipients": ["<another_user_id_here>"],
+  "message": "Hello from John!"
+}
+
+```
+
+**Admin Notification (Requires Bearer Token)** 
+
+POST ```http /api/admin/notify ```
+Body:
+```bash  
+{
+  "recipients": ["<user_id_1>", "<user_id_2>"],
+  "message": "Important Update",
+  "type": "critical"
+}
+
+```
+
 ---
 
 ## 🧾 More
